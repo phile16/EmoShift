@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EmoShift.DrawSettings"
+             Title="EmoShift Settings">
+    <StackLayout Padding="20">
+
+
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <CheckBox x:Name="cbShowFaceLandmarks" Grid.Row="0" Grid.Column="0" CheckedChanged="cbShowFaceLandmarks_CheckedChanged"/>
+            <Label Text="Show Face landmarks"  Grid.Row="0" Grid.Column="1">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                                Binding="{Binding Source={x:Reference cbShowFaceLandmarks}, Path=IsChecked}"
+                                Value="true">
+                        <Setter Property="FontAttributes" Value="Bold" />
+                        <Setter Property="FontSize" Value="14" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+
+            <CheckBox x:Name="cbShowFaceRectangle" Grid.Row="0" Grid.Column="2" CheckedChanged="cbShowFaceRectangle_CheckedChanged"/>
+            <Label Text="Show Face Rectangle"  Grid.Row="0" Grid.Column="3">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                                Binding="{Binding Source={x:Reference cbShowFaceRectangle}, Path=IsChecked}"
+                                Value="true">
+                        <Setter Property="FontAttributes" Value="Bold" />
+                        <Setter Property="FontSize" Value="14" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+
+
+            <CheckBox x:Name="cbShowHandRectangle" Grid.Row="1" Grid.Column="0" CheckedChanged="cbShowHandRectangle_CheckedChanged"/>
+            <Label Text="Show Hand Rectangle"  Grid.Row="1" Grid.Column="1">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                                Binding="{Binding Source={x:Reference cbShowHandRectangle}, Path=IsChecked}"
+                                Value="true">
+                        <Setter Property="FontAttributes" Value="Bold" />
+                        <Setter Property="FontSize" Value="14" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+
+            <CheckBox x:Name="cbShowEmotionRectangle" Grid.Row="1" Grid.Column="2" CheckedChanged="cbShowEmotionRectangle_CheckedChanged"/>
+            <Label Text="Show Emotion Rectangle"  Grid.Row="1" Grid.Column="3">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                                Binding="{Binding Source={x:Reference cbShowEmotionRectangle}, Path=IsChecked}"
+                                Value="true">
+                        <Setter Property="FontAttributes" Value="Bold" />
+                        <Setter Property="FontSize" Value="14" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+        </Grid>
+
+        <Label Text="FER Shift Alert:"/>
+        <Entry x:Name="entryFerShift"
+           Placeholder="24"
+           TextChanged="entryFerShift_TextChanged"
+           Completed="entryFerShift_Completed"
+           />
+
+        <Label Text="Frames Per Second (FPS):"/>
+        <Entry x:Name="entryFPS"
+           Placeholder="24"
+           TextChanged="OnEntryFPSTextChanged"
+           Completed="OnEntryFPSCompleted"
+           />        
+        
+        <Label Text="Video/Files Save Location:"/>
+        <Entry x:Name="entrySaveFiles"
+           Placeholder="24"
+           TextChanged="OnEntrySaveFilesTextChanged"
+           Completed="OnEntrySaveFilesCompleted"
+           />
+    </StackLayout>
+</ContentPage>

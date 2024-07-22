@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+            xmlns:models="clr-namespace:EmoShift.models"
+            x:Class="EmoShift.MainPage">
+
+    <ContentPage.BindingContext>
+        <models:ChartModels/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="File">
+            <MenuFlyoutItem Text="Exit"
+                            Command="{Binding ExitCommand}" />
+        </MenuBarItem>
+        <MenuBarItem Text="Settings">
+            <MenuFlyoutItem Text="EmoShift Settings"
+                                Clicked="OnDrawSettingsClicked"/>
+            <MenuFlyoutItem Text="System Settings"
+                                Clicked="OnShowSystemSettingsClicked"/>
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+
+    <ScrollView>
+        
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+
+            <Grid Padding="10">
+                <Grid.BindingContext>
+                    <models:ChartModels/>
+                </Grid.BindingContext>
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="175"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Border 
+                    x:Name="EmoBorder"
+                    Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3"
+                    StrokeShape="RoundRectangle 0,0,0,0"
+                    Background="Gray"
+                    Padding="16,16"
+                    HorizontalOptions="Center">
+                    <Image 
+                        Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="4"
+                        x:Name="VideoImg"
+                        WidthRequest="640"
+                        HeightRequest="480"
+                        HorizontalOptions="Center"/>
+                </Border>
+
+
+                <lvc:CartesianChart
+                    Grid.Row="0" Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="4"
+                    Series="{Binding EmotionProbSeries}"
+                    XAxes="{Binding EmotionProbXAxes}"
+                    >
+                </lvc:CartesianChart>
+
+                <lvc:PieChart
+                    Grid.Row="2" Grid.RowSpan="1" Grid.Column="4"
+                    Series="{Binding EmoAngularModelSeries}"
+                    VisualElements="{Binding EmoAngularModelVisualElements}"
+                    InitialRotation="-225"
+                    MaxAngle="270"
+                    MinValue="0"
+                    MaxValue="7">
+                </lvc:PieChart>
+
+                <Ellipse
+                    x:Name="EyeEllipse"
+                    Grid.Row="2" Grid.RowSpan="1" Grid.Column="5"
+                    Stroke="Black"
+                    StrokeThickness="7"
+                    WidthRequest="150" 
+                    HeightRequest="50" 
+                    HorizontalOptions="Center" 
+                />
+                <Label
+                    Grid.Row="2" Grid.RowSpan="1" Grid.Column="5"
+                    Text="Eye Aspect Ratio"
+                    SemanticProperties.HeadingLevel="Level1"
+                    FontSize="16"
+                    HorizontalOptions="Center" />
+
+                <Ellipse 
+                    x:Name="MouthEllipse"
+                    Grid.Row="2" Grid.RowSpan="1" Grid.Column="6"
+                    Stroke="Red"
+                    StrokeThickness="20"
+                    WidthRequest="150" 
+                    HeightRequest="50" 
+                    HorizontalOptions="Center"
+                />
+                <Label
+                    Grid.Row="2" Grid.RowSpan="1" Grid.Column="6"
+                    Text="Mouth Aspect Ratio"
+                    SemanticProperties.HeadingLevel="Level1"
+                    FontSize="16"
+                    HorizontalOptions="Center" />
+
+                <Image
+                    x:Name="HandWave"
+                    Grid.Row="2" Grid.RowSpan="1" Grid.Column="7"
+                    Source="red_arrow.png"
+                    SemanticProperties.Description="Arrow for shift in emotional state"
+                    HeightRequest="150"
+                    HorizontalOptions="Center" />
+                <Label
+                    Grid.Row="2" Grid.RowSpan="1" Grid.Column="7"
+                    Text="Emotion Shift"
+                    SemanticProperties.HeadingLevel="Level1"
+                    FontSize="16"
+                    HorizontalOptions="Center" />                
+                
+
+
+
+
+
+
+                <lvc:CartesianChart
+                    Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4"
+                    Series="{Binding EmoShiftSeries}">
+                </lvc:CartesianChart>
+
+            </Grid>
+
+            <Button
+                x:Name="RecordBtn"
+                Text="Start Recording" 
+                Clicked="OnRecordBtnClicked"
+                HorizontalOptions="Fill" />
+
+            <Label
+                Text="{Binding EmoShift.MainPage.RecognitionText}"
+                FontSize="18"
+                HorizontalOptions="Center" />
+
+
+            <Editor x:Name="EmoLog"
+                Placeholder="Temp output of Emo Log"
+                HeightRequest="250"
+                TextChanged="OnEditorTextChanged"
+                Completed="OnEditorCompleted" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
