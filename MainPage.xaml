@@ -117,9 +117,9 @@
                     HorizontalOptions="Center" />
 
                 <Image
-                    x:Name="HandWave"
+                    x:Name="EmoShiftArrow"
                     Grid.Row="2" Grid.RowSpan="1" Grid.Column="7"
-                    Source="red_arrow.png"
+                    Source="equal_sign.png"
                     SemanticProperties.Description="Arrow for shift in emotional state"
                     HeightRequest="150"
                     HorizontalOptions="Center" />

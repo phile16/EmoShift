@@ -183,16 +183,24 @@ namespace EmoShift
                         ChartModels.FERobservableValues.Add(emoScale);
                         //Bar charts
                         models.UpdateEmotionProbValues([.. emotionProb.Values]);
-                        //_EmoShiftDiffAlert
+                        //EmoShiftDiffAlert
+                        ////Screen Flash and Arrow
                         if (Math.Abs(prevEmoScale - emoScale) >= _EmoShiftDiffAlert)
                         {
                             if ((prevEmoScale - emoScale) >= 0)
+                            {
                                 EmoBorder.Background = Microsoft.Maui.Controls.Brush.Red;
+                                EmoShiftArrow.Source = ImageSource.FromFile("red_arrow.png");
+                            }
                             else
+                            {
                                 EmoBorder.Background = Microsoft.Maui.Controls.Brush.Green;
+                                EmoShiftArrow.Source = ImageSource.FromFile("green_arrow.png");
+                            }
                         }
                         else {
                             EmoBorder.Background = Microsoft.Maui.Controls.Brush.Gray;
+                            EmoShiftArrow.Source = ImageSource.FromFile("equal_sign.png");
                         }
 
 

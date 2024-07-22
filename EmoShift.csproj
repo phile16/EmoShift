@@ -69,6 +69,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Raw\emotion\Corrective_re-annotation_of_FER_CK+_KDEF-cnn_300_0.001_1E-05_256_train_best_0.944568452380952.dat" />
 	  <None Remove="Resources\Raw\face\shape_predictor_68_face_landmarks.dat" />
 	  <None Remove="resources\raw\hand\README.MD" />
 	</ItemGroup>
@@ -131,12 +132,6 @@
 	  <MauiAsset Update="Resources\Raw\emotion\vgg_face_weights.h5">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </MauiAsset>
-	  <MauiAsset Update="Resources\Raw\face\dlib_face_recognition_resnet_model_v1.dat">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </MauiAsset>
-	  <MauiAsset Update="Resources\Raw\face\shape_predictor_5_face_landmarks.dat">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </MauiAsset>
 	  <MauiAsset Update="Resources\Raw\face\shape_predictor_68_face_landmarks.dat">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </MauiAsset>
@@ -152,10 +147,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Resources\Raw\emotion\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Compile Update="DrawSettings.xaml.cs">
 	    <DependentUpon>DrawSettings.xaml</DependentUpon>
 	  </Compile>
@@ -165,6 +156,12 @@
 	  <MauiXaml Update="DrawSettings.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiAsset Update="Resources\Raw\emotion\Corrective_re-annotation_of_FER_CK+_KDEF-cnn_300_0.001_1E-05_256_train_best_0.944568452380952.dat">
+	    <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+	  </MauiAsset>
 	</ItemGroup>
 
 </Project>
